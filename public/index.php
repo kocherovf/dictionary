@@ -3,19 +3,15 @@
 declare(strict_types=1);
 
 use DI\Bridge\Slim\Bridge;
-use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\ResponseInterface;
+use Psr\Container\ContainerInterface;
 
 require '../vendor/autoload.php';
 
-$app = Bridge::create();
+/** @var ContainerInterface $container */
+$container = require __DIR__ . '/../config/container.php';
+$app = Bridge::create($container);
 
-$app->get(
-    '/test',
-    function (RequestInterface $request, ResponseInterface $response) {
-        $response->getBody()->write('Ok!');
-        return $response;
-    }
-);
+(require __DIR__ . '/../config/middleware.php')($app, $container);
+(require __DIR__ . '/../config/routes.php')($app);
 
 $app->run();
