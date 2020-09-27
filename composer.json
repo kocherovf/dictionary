@@ -1,0 +1,13 @@
+{
+    "require": {
+        "php": ">=7.4",
+        "slim/slim": "4.*",
+        "slim/psr7": "^1.2",
+        "php-di/php-di": "^6.2",
+        "php-di/slim-bridge": "^3.0"
+    }
+    ,
+    "require-dev": {
+        "roave/security-advisories": "dev-master"
+    }
+}
